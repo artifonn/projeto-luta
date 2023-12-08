@@ -1,5 +1,4 @@
 class Character {
-
   _life = 1;
   maxLife = 1;
   attack = 0;
@@ -59,11 +58,12 @@ class BigMonster extends  Character {
 }
 
 class Stage {
-  constructor(fighter1, fighter2, fighter1El, fighter2El) {
+  constructor(fighter1, fighter2, fighter1El, fighter2El, logObject) {
     this.fighter1 = fighter1;
     this.fighter2 = fighter2;
     this.fighter1El = fighter1El;
     this.fighter2El = fighter2El;
+    this.log = logObject;
   }
 
   start() {
@@ -85,7 +85,7 @@ update() {
 }
   doAttack(attacking, attacked) {
     if(attacking.life <= 0 || attacked.life <= 0) {
-      console.log('Morreu');
+      this.log.addMessage('Morreu');
     }
 
     let attackFactor = (Math.random() * 2).toFixed(2);
@@ -96,11 +96,33 @@ update() {
 
     if(actualAttack > actualDefense) {
       attacked.life -= actualAttack;
-      console.log(`${attacking.name} causou ${actualAttack} de dano`);
+      this.log.addMessage(`${attacking.name} causou ${actualAttack} de dano`);
     } else {
-      console.log('Defeza...');
+      
+      this.log.addMessage(`${attacked.name} conseguiu defender.`)
     }
 
     this.update()
+  }
+}
+
+class Log {
+  list = [];
+
+  constructor(listEl) {
+    this.listEl = listEl;
+  }
+
+  addMessage(msg) {
+    this.list.push(msg);
+    this.render();
+  }
+
+  render() {
+    this.listEl.innerHTML = '';
+
+    for(let i in this.list) {
+      this.listEl.innerHTML += `<li>${this.list[i]}</li>`
+    }
   }
 }

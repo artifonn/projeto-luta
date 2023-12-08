@@ -1,3 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  color: #fff;
+  list-style: none;
+}
+
+body {
+  background:  #97C1A9;
+}
+
+.title {
+  font-size: 80px;
+  align-items: center;
+  text-align: center;
+}
+
 .fightarea {
   display: flex;
   gap: 20px;
@@ -14,17 +34,40 @@
   border-radius: 5px;
 }
 
-.lifebar .bar {
+.fightarea {
+  margin-top: 50px;
+}
+
+.bar {
   height: inherit;
-  width: 10%;
-  background: red;
+  background: #E67C73;
   border-radius: 5px;
 }
 
 .log {
   border:  1px dotted #999;
-  height: 200px;
-  overflow-y:  scroll;
+  height: 300px;
+  overflow-y:  auto;
+  background: #8FCACA;
 }
 
+.name {
+  margin: 10px;
+  font-weight: 600;
+  font-size: 18px;
+}
 
+.attackButton {
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 80px;
+  height: 25px;
+  background:  #FCB9AA;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.attackButton:hover {
+  background: #E67C73;
+}

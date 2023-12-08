@@ -84,19 +84,20 @@ update() {
   this.fighter2El.querySelector('.bar').style.width = `${f2}%`
 }
   doAttack(attacking, attacked) {
-    if(attacking.life <= 0 || attacked.life <= 0) {
-      this.log.addMessage('Morreu');
-    }
-
+   
     let attackFactor = (Math.random() * 2).toFixed(2);
     let defenseFactor = (Math.random() * 2).toFixed(2);
 
     let actualAttack = attacking.attack * attackFactor;
     let actualDefense = attacked.defense * defenseFactor;
 
+    if(attacking.life <= 0 || attacked.life <= 0) {
+      return this.log.addMessage(`${attacked.name} morreu`);
+    }
+
     if(actualAttack > actualDefense) {
       attacked.life -= actualAttack;
-      this.log.addMessage(`${attacking.name} causou ${actualAttack} de dano`);
+      this.log.addMessage(`${attacking.name} causou ${actualAttack.toFixed(2)} de dano`);
     } else {
       
       this.log.addMessage(`${attacked.name} conseguiu defender.`)

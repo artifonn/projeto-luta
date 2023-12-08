@@ -4,7 +4,7 @@ class Character {
   maxLife = 1;
   attack = 0;
   defense = 0;
-  
+
   constructor(name) {
     this.name = name;
   }
@@ -17,7 +17,6 @@ class Character {
     this._life = newLife < 0 ? 0 : newLife;
   }
 }
-
 
 class Knight extends Character {
   constructor(name) {
@@ -38,6 +37,27 @@ class Sorcerer extends Character {
     this.maxLife = this.life;
   }
 }
+
+class LittleMonster extends Character {
+  constructor() {
+    super('Little Monster');
+    this.life = 40;
+    this.attack = 4;
+    this.defense = 4;
+    this.maxLife = this.life;
+  }
+}
+
+class BigMonster extends  Character {
+  constructor() {
+    super('Big Monster');
+    this.life = 120;
+    this.attack = 16;
+    this.defense = 6;
+    this.maxLife = this.life;
+  }
+}
+
 
 
 

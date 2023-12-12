@@ -80,10 +80,8 @@ const stage = {
   },
   
   doAttack(attacking, attacked) {
-    console.log(`${attacking.name} atacou ${attacked.name}`);
     if(attacking.life <= 0 || attacked.life <= 0) {
-      console.log('Morto não ataca!');
-
+      return log.addMessage(`${attacked.name} está morto`);
     }
 
     const attackFactor = (Math.random() * 2).toFixed(2)
@@ -95,11 +93,26 @@ const stage = {
     if(actualAttack > actualDefense) {
       attacked.life -= actualAttack;
       attacked.life = attacked.life < 0 ? 0 : attacked.life;
-      console.log(`${attacking.name} causou ${actualAttack.toFixed(2)} de dano em ${attacked.name}`);
+      log.addMessage(`${attacking.name} causou ${actualAttack.toFixed(2)} de dano em ${attacked.name}`);
     } else {
-      console.log('Defesa!');
+      log.addMessage(`${attacked.name} conseguiu defender.`);
     }
 
     this.update();
+  }
+}
+
+const log = {
+  list: [],
+  addMessage(msg){
+    this.list.push(msg);
+    this.render();
+  },
+  render() {
+    const logEl = document.querySelector('.log');
+    logEl.innerHTML = '';
+
+    for(let i in this.list)
+    logEl.innerHTML += `<li>${this.list[i]}</li>`;
   }
 }

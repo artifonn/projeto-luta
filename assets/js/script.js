@@ -1,4 +1,9 @@
 const char = createKnigth('Hulk');
-const monster = createBigMonster();
+const monster = createLittleMonster();
 
-console.log(monster.maxLife);
+stage.start(
+  char,
+  monster,
+  document.querySelector('#char'),
+  document.querySelector('#monster')
+);
